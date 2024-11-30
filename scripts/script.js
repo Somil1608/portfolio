@@ -36,6 +36,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   
+    
     navLinks.forEach((link) => {
       link.classList.remove('active');
       if (link.getAttribute('href').substring(1) === currentSection) {
