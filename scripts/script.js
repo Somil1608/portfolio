@@ -36,7 +36,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   
-    
+
     navLinks.forEach((link) => {
       link.classList.remove('active');
       if (link.getAttribute('href').substring(1) === currentSection) {
@@ -44,4 +44,38 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   });
-  
+  //--------------------------googlesheet
+const scriptURL = 'https://script.google.com/macros/s/AKfycbwpY2Ox86E2bgdTDiu4uGK_AEQ_6LwufMLPZdrJKAHkzuMsf49BLzPRh4siXIvbyZBu/exec'; // Replace this with your Web App URL
+const form = document.getElementById('contact-form');
+const responseMessage = document.getElementById('response-message');
+
+form.addEventListener('submit', (e) => {
+  e.preventDefault();
+
+  const formData = new FormData(form);
+  const data = {
+    name: formData.get('name'),
+    email: formData.get('email'),
+    message: formData.get('message')
+  };
+
+  fetch(scriptURL, {
+    method: 'POST',
+    body: JSON.stringify(data),
+    headers: { 'Content-Type': 'application/json' }
+  })
+  .then(response => {
+    if (!response.ok) throw new Error('Network response was not ok');
+    return response.json();
+  })
+  .then(data => {
+    responseMessage.innerText = "Your message has been sent successfully!";
+    responseMessage.style.color = "green";
+    form.reset();
+  })
+  .catch(error => {
+    responseMessage.innerText = "Error! Please try again.";
+    responseMessage.style.color = "red";
+    console.error('Error:', error);
+  });
+});
