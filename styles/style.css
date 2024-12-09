@@ -23,12 +23,19 @@ body {
   z-index: 1000;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
-
-
-.header .logo  {
-  font-family: Augestina;
-  text-transform: capitalize;
+@font-face {
+  font-family: 'Augestina';
+  src: url('../fonts/Agustina.otf') format('opentype'); /* Add file format */
 }
+
+
+.header .logo {
+  font-family: 'Augestina', 'Poppins', sans-serif; /* Fallback fonts */
+  text-transform: capitalize;
+  font-size: 32px;
+
+}
+
 
 :root {
   --blue: #5e72e4;
@@ -51,7 +58,6 @@ body {
   --info: #11cdef;
   --warning: #fb6340;
   --danger: #f5365c;
-  --light: #adb5bd;
   --dark: #212529;
   --default: #172b4d;
   --white: #fff;
@@ -62,8 +68,8 @@ body {
   --breakpoint-md: 768px;
   --breakpoint-lg: 992px;
   --breakpoint-xl: 1200px;
-  --font-family-sans-serif: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
-  --font-family-monospace: SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace
+  --font-family-sans-serif: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 }
 
 *,:after,:before {
@@ -166,21 +172,27 @@ body {
 
 /* Projects Section */
 .projects-section {
-  padding: 60px 20px;
+  padding: 30px 10px;
   background: #eef2ff; /* Soft blue tint */
 }
 
 .projects-section h2 {
   text-align: center;
   font-size: 2.5rem;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
   color: #1e3a8a; /* Deep navy blue */
 }
 
+
+
 .project-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 20px;
+  display: flex;
+  justify-content: center; /* Center the single card */
+  align-items: flex-start; /* Align to the top */
+  gap: 20px; /* Space between cards if more are added */
+  padding-top: 2%; /* Remove extra padding */
+  height: 90vh; 
+
 }
 
 .project-item {
@@ -190,6 +202,8 @@ body {
   overflow: hidden;
   text-align: center;
   transition: transform 0.3s, box-shadow 0.3s;
+  width: 80%;
+
 }
 
 .project-item:hover {
@@ -198,8 +212,9 @@ body {
 }
 
 .project-item img {
-  width: 100%;
+  width: 60%;
   height: auto;
+  padding-top: 5%;
 }
 
 .project-item h3 {
@@ -210,7 +225,7 @@ body {
 
 .project-item p {
   font-size: 1rem;
-  padding: 0 20px 20px;
+  padding: 0 100px 20px;
   color: #555;
 }
 
@@ -262,6 +277,107 @@ body {
   background: #60a5fa; /* Lighter blue on hover */
   transform: scale(1.1);
 }
+
+/* General Reset for Social Media Icons */
+.social-media-bar {
+  position: fixed;
+  left: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  z-index: 1000;
+}
+
+/* Style Individual Icons */
+.social-icon {
+  background: #ffffff;
+  border: 1px solid #ddd;
+  height: 40px;
+  width: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Add Hover Effects */
+.social-icon:hover {
+  transform: scale(1.2);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+/* Social Media Section */
+.social-media-section {
+  text-align: center;
+  margin: 50px 0;
+}
+
+.social-media-section h2 {
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.social-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+/* General Button Style */
+.social-buttons .btn {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  font-size: 1.5rem;
+  color: #fff;
+  text-decoration: none;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+/* LinkedIn Button */
+.btn-linkedin {
+  background-color: #0077b5;
+  border-color: #0077b5;
+}
+.btn-linkedin:hover {
+  background-color: #005582;
+  transform: translateY(-3px);
+}
+
+/* GitHub Button */
+.btn-github {
+  background-color: #333;
+  border-color: #333;
+}
+.btn-github:hover {
+  background-color: #24292e;
+  transform: translateY(-3px);
+}
+
+/* Instagram Button */
+.btn-instagram {
+  background-color: #e4405f;
+  border-color: #e4405f;
+}
+.btn-instagram:hover {
+  background-color: #d31e40;
+  transform: translateY(-3px);
+}
+
+/* Hover Effects for All Buttons */
+.social-buttons .btn:hover {
+  box-shadow: 0 6px 8px rgba(50, 50, 93, 0.15), 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
 
 /* Footer */
 footer {
